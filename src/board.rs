@@ -21,6 +21,10 @@ impl Board {
         };
     }
 
+    fn offset_to_coordinate(offset: usize) -> (usize, usize) {
+        return (offset / 8, offset % 8);
+    }
+
 }
 
 impl Index<usize> for Board {
@@ -47,6 +51,17 @@ fn test_new() {
                 "Cell value should be false at [{}][{}]", row, cell);
         }
     }
+}
+
+#[test]
+fn test_offset_to_coordinate() {
+    assert_eq!((0, 0), Board::offset_to_coordinate(0));
+    assert_eq!((0, 1), Board::offset_to_coordinate(1));
+    assert_eq!((0, 7), Board::offset_to_coordinate(7));
+    assert_eq!((1, 0), Board::offset_to_coordinate(8));
+    assert_eq!((1, 7), Board::offset_to_coordinate(15));
+    assert_eq!((2, 0), Board::offset_to_coordinate(16));
+    assert_eq!((7, 7), Board::offset_to_coordinate(63));
 }
 
 #[test]

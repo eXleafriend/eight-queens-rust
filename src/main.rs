@@ -65,18 +65,3 @@ fn test_board_to_string() {
         "........\n",
         str);
 }
-
-fn offset_to_coordinate(offset: i32) -> (i32, i32) {
-    return (offset / 8, offset % 8);
-}
-
-#[test]
-fn test_offset_to_coordinate() {
-    assert_eq!((0, 0), offset_to_coordinate(0));
-    assert_eq!((0, 1), offset_to_coordinate(1));
-    assert_eq!((0, 7), offset_to_coordinate(7));
-    assert_eq!((1, 0), offset_to_coordinate(8));
-    assert_eq!((1, 7), offset_to_coordinate(15));
-    assert_eq!((2, 0), offset_to_coordinate(16));
-    assert_eq!((7, 7), offset_to_coordinate(63));
-}
