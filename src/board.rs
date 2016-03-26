@@ -1,4 +1,4 @@
-use std::ops::Index;
+use std::ops::{Index, IndexMut};
 
 pub struct Board {
     cells: [[bool; 8]; 8],
@@ -31,6 +31,13 @@ impl Index<usize> for Board {
     }
 }
 
+impl IndexMut<usize> for Board {
+    fn index_mut<'a>(&'a mut self, index: usize) -> &'a mut [bool; 8] {
+        &mut self.cells[index]
+    }
+}
+
+
 #[test]
 fn test_new() {
     let board  = Board::new();
@@ -46,4 +53,12 @@ fn test_new() {
 fn test_index() {
     let board  = Board::new();
     assert_eq!(board[0], [false, false, false, false, false, false, false, false, ]);
+}
+
+#[test]
+fn test_index_mut() {
+    let mut board  = Board::new();
+    board[1][2] = true;
+    assert_eq!(board[1][2], true);
+    assert_eq!(board[1], [false, false, true, false, false, false, false, false, ]);
 }
