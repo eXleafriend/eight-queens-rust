@@ -21,6 +21,16 @@ impl Board {
         };
     }
 
+    pub fn put(&mut self, offset: usize) {
+        let (row, cell) = offset_to_coordinate(offset);
+        self.cells[row][cell] = true;
+    }
+
+    pub fn remove(&mut self, offset: usize) {
+        let (row, cell) = offset_to_coordinate(offset);
+        self.cells[row][cell] = false;
+    }
+
 }
 
 impl Index<usize> for Board {
@@ -47,6 +57,50 @@ fn test_new() {
                 "Cell value should be false at [{}][{}]", row, cell);
         }
     }
+}
+
+#[test]
+fn test_put() {
+    let mut board = Board::new();
+
+    board.put(0);
+    assert!(board[0][0]);
+
+    board.put(7);
+    assert!(board[0][7]);
+
+    board.put(8);
+    assert!(board[1][0]);
+
+    board.put(63);
+    assert!(board[7][7]);
+
+}
+
+#[test]
+fn test_remove() {
+    let mut board = Board::new();
+
+    board.put(0);
+    assert!(board[0][0]);
+    board.remove(0);
+    assert!(!board[0][0]);
+
+    board.put(7);
+    assert!(board[0][7]);
+    board.remove(7);
+    assert!(!board[0][7]);
+
+    board.put(8);
+    assert!(board[1][0]);
+    board.remove(8);
+    assert!(!board[1][0]);
+
+    board.put(63);
+    assert!(board[7][7]);
+    board.remove(63);
+    assert!(!board[7][7]);
+
 }
 
 fn offset_to_coordinate(offset: usize) -> (usize, usize) {
