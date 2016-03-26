@@ -42,3 +42,27 @@ fn test_row_to_string() {
 
     assert_eq!(".Q.Q.Q.Q", row_to_string(&[f, t, f, t, f, t, f, t]));
 }
+
+fn board_to_string(board: &[[bool; 8]; 8]) -> String {
+    return board.iter().map(|&row|
+        row_to_string(&row) + "\n"
+    ).collect();
+}
+
+#[test]
+fn test_board_to_string() {
+    let board = new_empty_board();
+    let str = board_to_string(&board);
+
+    assert_eq!("".to_string() +
+        "........\n" +
+        "........\n" +
+        "........\n" +
+        "........\n" +
+        "........\n" +
+        "........\n" +
+        "........\n" +
+        "........\n",
+        str);
+}
+
