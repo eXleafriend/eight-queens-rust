@@ -25,3 +25,20 @@ fn test_new_empty_board() {
         }
     }
 }
+
+fn row_to_string(row: &[bool; 8]) -> String {
+    return row.iter().map(|&b| match b {
+        false => ".",
+        true => "Q",
+    })
+    .flat_map(|s| s.chars())
+    .collect();
+}
+
+#[test]
+fn test_row_to_string() {
+    let f = false;
+    let t = true;
+
+    assert_eq!(".Q.Q.Q.Q", row_to_string(&[f, t, f, t, f, t, f, t]));
+}
