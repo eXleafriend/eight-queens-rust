@@ -36,7 +36,9 @@ impl Arrangement {
     }
 
     pub fn iter(&self) -> Iter {
-        Iter
+        Iter {
+            base: self,
+        }
     }
 
 }
@@ -49,9 +51,11 @@ impl Index<usize> for Arrangement {
     }
 }
 
-pub struct Iter;
+pub struct Iter<'a> {
+    base: &'a Arrangement,
+}
 
-impl Iterator for Iter {
+impl<'a> Iterator for Iter<'a> {
     type Item = Arrangement;
     fn next(&mut self) -> Option<Self::Item> {
         None
