@@ -47,7 +47,7 @@ impl Arrangement {
 
     pub fn iter(&self) -> Iter {
         Iter {
-            base: self,
+            base: self.arrangement.clone(),
         }
     }
 
@@ -61,15 +61,50 @@ impl Index<usize> for Arrangement {
     }
 }
 
-pub struct Iter<'a> {
-    base: &'a Arrangement,
+pub struct Iter {
+    base: Vec<bool>,
 }
 
-impl<'a> Iterator for Iter<'a> {
+impl Iterator for Iter {
     type Item = Arrangement;
     fn next(&mut self) -> Option<Self::Item> {
+        let mut passed_count = 0;
+        let capacity = (&self.base).len();
+        for i in 0..(capacity - 1) {
+            if is_occupied((&self.base)[i]) {
+                if is_vacant((&self.base)[i + 1]) {
+                    let mut arrangement = vec![];
+                    for _ in 0..passed_count {
+                        arrangement.push(true);
+                    }
+                    for _ in passed_count..i {
+                        arrangement.push(false);
+                    }
+                    arrangement.push(false);
+                    arrangement.push(true);
+                    for n in (i + 2)..capacity {
+                        arrangement.push((&self.base)[n]);
+                    }
+                    //let new = Arrangement::from(arrangement);
+                    self.base = arrangement.clone();
+                    return Some(Arrangement::from(arrangement));
+                } else {
+                    passed_count += 1;
+                }
+            } else /* if is_vacant(arr[i]) */ {
+
+            }
+        }
         None
     }
+}
+
+fn is_vacant(b: bool) -> bool {
+    !b
+}
+
+fn is_occupied(b: bool) -> bool {
+    b
 }
 
 /*

@@ -60,3 +60,39 @@ fn from() {
     assert_eq!(arr[1], true);
     assert_eq!(arr[2], false);
 }
+
+#[test]
+fn iter_1_0() {
+    let arr = Arrangement::new(1, 0);
+    let mut iter = arr.iter();
+    assert_eq!(iter.next(), None);
+}
+
+#[test]
+fn iter_1_1() {
+    let arr = Arrangement::new(1, 1);
+    let mut iter = arr.iter();
+    assert_eq!(iter.next(), None);
+}
+
+#[test]
+fn iter_2_1() {
+    let arr = Arrangement::new(2, 1);
+    let mut iter = arr.iter();
+    assert_eq!(arr, Arrangement::from(vec![true, false]));
+    assert_eq!(iter.next(), Some(Arrangement::from(vec![false, true])));
+    assert_eq!(iter.next(), None);
+}
+
+#[test]
+fn iter_4_2() {
+    let arr = Arrangement::new(4, 2);
+    let mut iter = arr.iter();
+    assert_eq!(arr, Arrangement::from(vec![true, true, false, false]));
+    assert_eq!(iter.next(), Some(Arrangement::from(vec![true, false, true, false])));
+    assert_eq!(iter.next(), Some(Arrangement::from(vec![false, true, true, false])));
+    assert_eq!(iter.next(), Some(Arrangement::from(vec![true, false, false, true])));
+    assert_eq!(iter.next(), Some(Arrangement::from(vec![false, true, false, true])));
+    assert_eq!(iter.next(), Some(Arrangement::from(vec![false, false, true, true])));
+    assert_eq!(iter.next(), None);
+}
