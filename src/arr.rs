@@ -25,4 +25,12 @@ impl Arrangement {
         arr
     }
 
+    pub fn capacity(&self) -> usize{
+        self.capacity
+    }
+
+    pub fn count(&self) -> usize {
+        self.count
+    }
+
 }
