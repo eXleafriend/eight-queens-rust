@@ -35,6 +35,10 @@ impl Arrangement {
         self.count
     }
 
+    pub fn iter(&self) -> Iter {
+        Iter
+    }
+
 }
 
 impl Index<usize> for Arrangement {
@@ -54,6 +58,7 @@ impl Iterator for Iter {
     }
 }
 
+/*
 impl IntoIterator for Arrangement {
     type Item = Arrangement;
     type IntoIter = Iter;
@@ -61,4 +66,4 @@ impl IntoIterator for Arrangement {
         Iter
     }
 }
-
+*/
