@@ -1,7 +1,7 @@
 fn main() {
     println!("Hello, world!");
 }
-
+/*
 fn new_empty_board() -> [[bool; 8]; 8] {
     return [
         [false, false, false, false, false, false, false, false,],
@@ -66,3 +66,4 @@ fn test_board_to_string() {
         str);
 
 }
+*/
