@@ -64,4 +64,5 @@ fn test_board_to_string() {
         "........\n" +
         "........\n",
         str);
+
 }

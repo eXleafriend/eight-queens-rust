@@ -46,4 +46,7 @@ fn new() {
     assert_eq!(arr0[2], true);
     assert_eq!(arr0[3], true);
 
+    for _ in arr0 {
+    }
+
 }

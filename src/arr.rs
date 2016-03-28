@@ -44,3 +44,21 @@ impl Index<usize> for Arrangement {
         &self.arrangement[index]
     }
 }
+
+pub struct Iter;
+
+impl Iterator for Iter {
+    type Item = Arrangement;
+    fn next(&mut self) -> Option<Self::Item> {
+        None
+    }
+}
+
+impl IntoIterator for Arrangement {
+    type Item = Arrangement;
+    type IntoIter = Iter;
+    fn into_iter(self) -> Self::IntoIter {
+        Iter
+    }
+}
+
