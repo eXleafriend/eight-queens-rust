@@ -1,7 +1,9 @@
+use std::ops::Index;
+
 pub struct Arrangement {
     capacity: usize,
     count: usize,
-    pub arrangement: Vec<bool>,
+    arrangement: Vec<bool>,
 }
 
 impl Arrangement {
@@ -33,4 +35,12 @@ impl Arrangement {
         self.count
     }
 
+}
+
+impl Index<usize> for Arrangement {
+    type Output = bool;
+
+    fn index<'a>(&'a self, index: usize) -> &'a bool {
+        &self.arrangement[index]
+    }
 }
