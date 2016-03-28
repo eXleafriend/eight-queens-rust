@@ -1,5 +1,6 @@
 use std::ops::Index;
 
+#[derive(PartialEq, Debug)]
 pub struct Arrangement {
     capacity: usize,
     count: usize,
@@ -25,6 +26,15 @@ impl Arrangement {
             arr.arrangement.push(false);
         }
         arr
+    }
+
+    pub fn from(arrangement: Vec<bool>) -> Arrangement {
+        let count = arrangement.iter().filter(|&b| *b).collect::<Vec<&bool>>().len();
+        Arrangement {
+            capacity: arrangement.len(),
+            count: count,
+            arrangement: arrangement,
+        }
     }
 
     pub fn capacity(&self) -> usize{

@@ -50,3 +50,13 @@ fn new() {
     }
 
 }
+
+#[test]
+fn from() {
+    let arr = Arrangement::from(vec![false, true, false]);
+    assert_eq!(arr.capacity(), 3);
+    assert_eq!(arr.count(), 1);
+    assert_eq!(arr[0], false);
+    assert_eq!(arr[1], true);
+    assert_eq!(arr[2], false);
+}
