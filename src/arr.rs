@@ -1,4 +1,5 @@
 use std::ops::Index;
+use std::cmp::{PartialOrd, Ordering};
 
 #[derive(PartialEq, Debug)]
 pub struct Arrangement {
@@ -102,6 +103,25 @@ fn is_vacant(b: bool) -> bool {
 
 fn is_occupied(b: bool) -> bool {
     b
+}
+
+impl PartialOrd for Arrangement {
+    fn partial_cmp(&self, other: &Arrangement) -> Option<Ordering> {
+        if self.capacity() != other.capacity() {
+            return None;
+        }
+        let capacity = self.capacity();
+        for i in 0..capacity {
+            let index = capacity - i - 1;
+            if !self[index] && other[index] {
+                return Some(Ordering::Less);
+            }
+            if self[index] && !other[index] {
+                return Some(Ordering::Greater);
+            }
+        }
+        return Some(Ordering::Equal);
+    }
 }
 
 /*

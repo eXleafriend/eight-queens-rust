@@ -1,6 +1,7 @@
 extern crate eightqueens;
 
 use self::eightqueens::arr::*;
+use std::cmp::Ordering;
 
 #[test]
 fn new() {
@@ -95,4 +96,14 @@ fn iter_4_2() {
     assert_eq!(iter.next(), Some(Arrangement::from(vec![false, true, false, true])));
     assert_eq!(iter.next(), Some(Arrangement::from(vec![false, false, true, true])));
     assert_eq!(iter.next(), None);
+}
+
+#[test]
+fn partial_cmp() {
+    assert!(Arrangement::from(vec![true, true, false, false]) <
+        Arrangement::from(vec![true, false, true, false]));
+    assert!(Arrangement::from(vec![true, false, true, false]) >
+        Arrangement::from(vec![true, true, false, false]));
+    assert_eq!(Arrangement::from(vec![true, false, true, false]).partial_cmp(
+        &Arrangement::from(vec![true, false, true, false])), Some(Ordering::Equal));
 }
