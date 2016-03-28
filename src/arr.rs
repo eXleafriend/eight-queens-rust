@@ -14,7 +14,6 @@ impl Arrangement {
             panic!("Capacity shou");
         }
         let mut arr = Arrangement {
-            capacity: capacity,
             count: count,
             arrangement: vec![]
         };
