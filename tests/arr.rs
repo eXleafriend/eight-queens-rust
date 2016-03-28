@@ -106,4 +106,7 @@ fn partial_cmp() {
         Arrangement::from(vec![true, true, false, false]));
     assert_eq!(Arrangement::from(vec![true, false, true, false]).partial_cmp(
         &Arrangement::from(vec![true, false, true, false])), Some(Ordering::Equal));
+
+    assert_eq!(Arrangement::from(vec![true, false, true, false]).partial_cmp(
+        &Arrangement::from(vec![true, false, true])), None);
 }
